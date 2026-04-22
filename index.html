@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lintil — The knowledge base built for architecture practices</title>
-  <meta name="description" content="Lintil captures institutional knowledge at the moment it's needed — through questions, answers, and documented decisions — and makes it permanently searchable by everyone in the firm.">
+  <meta name="description" content="Your practice knows a lot. Lintil makes sure you don't forget it. The knowledge base built for architecture practices.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -21,17 +21,14 @@
       --sand:       #E8DCC4;
       --ink:        #1A1A18;
       --sage:       #8A9187;
-      --sand-deep:  #C9BA9E;
     }
 
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
 
     body {
       background-color: var(--paper);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Geist', 'Helvetica Neue', Helvetica, sans-serif;
       font-weight: 300;
       min-height: 100vh;
       display: flex;
@@ -40,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Grain overlay ── */
     body::before {
       content: '';
       position: fixed;
@@ -52,29 +48,36 @@
       opacity: 0.6;
     }
 
-    /* ── Subtle background geometry ── */
     .bg-rule {
       position: fixed;
-      right: 0;
       top: 0;
+      right: clamp(60px, 12vw, 160px);
       width: 1px;
       height: 100vh;
       background: var(--sand);
       opacity: 0.6;
-      right: clamp(60px, 12vw, 160px);
+      display: none;
+    }
+
+    @media (min-width: 700px) {
+      .bg-rule { display: block; }
     }
 
     .bg-rule-h {
       position: fixed;
-      bottom: clamp(60px, 12vh, 120px);
-      left: 0;
-      width: 100vw;
+      bottom: clamp(72px, 10vh, 112px);
+      left: clamp(32px, 8vw, 120px);
+      right: clamp(60px, 12vw, 160px);
       height: 1px;
       background: var(--sand);
       opacity: 0.5;
+      display: none;
     }
 
-    /* ── Main layout ── */
+    @media (min-width: 700px) {
+      .bg-rule-h { display: block; }
+    }
+
     main {
       flex: 1;
       display: flex;
@@ -83,92 +86,160 @@
       padding: clamp(48px, 8vw, 120px) clamp(32px, 8vw, 120px);
       position: relative;
       z-index: 1;
-      max-width: 900px;
+      max-width: 860px;
     }
 
-    /* ── Wordmark ── */
     .wordmark {
       margin-bottom: clamp(48px, 8vh, 96px);
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.1s;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.05s;
     }
 
     .wordmark-rule {
       display: block;
-      width: 36px;
+      width: 32px;
       height: 1px;
       background: var(--ink);
       margin-bottom: 7px;
     }
 
     .wordmark-text {
-      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
-      font-size: 17px;
+      font-size: 16px;
       letter-spacing: -0.02em;
       color: var(--ink);
     }
 
-    /* ── Heading ── */
     h1 {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
+      font-weight: 300;
       font-size: clamp(36px, 6vw, 72px);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      max-width: 14ch;
-      margin-bottom: clamp(24px, 4vh, 40px);
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.25s;
+      max-width: 18ch;
+      margin-bottom: clamp(16px, 2.5vh, 28px);
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.2s;
     }
 
-    h1 em {
-      font-style: italic;
+    h1 span {
       color: var(--sage);
     }
 
-    /* ── Body copy ── */
-    .lede {
-      font-family: 'DM Sans', sans-serif;
+    .sub {
       font-weight: 300;
-      font-size: clamp(15px, 1.6vw, 18px);
+      font-size: clamp(14px, 1.4vw, 16px);
       line-height: 1.65;
       color: var(--ink);
-      max-width: 46ch;
-      opacity: 0.85;
-      margin-bottom: clamp(40px, 6vh, 64px);
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.4s;
+      opacity: 0.55;
+      max-width: 42ch;
+      margin-bottom: clamp(32px, 5vh, 52px);
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.32s;
+      letter-spacing: -0.01em;
     }
 
-    /* ── Status pill ── */
     .status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.55s;
+      margin-bottom: clamp(28px, 4vh, 44px);
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.32s;
     }
 
     .status-dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--sage);
       animation: pulse 2.4s ease-in-out infinite;
     }
 
     .status-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--sage);
     }
 
-    /* ── Footer ── */
+    .capture {
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.46s;
+    }
+
+    .capture-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .capture-row {
+      display: flex;
+      max-width: 400px;
+    }
+
+    .capture-input {
+      flex: 1;
+      font-family: 'Geist', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--sand);
+      border-right: none;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .capture-input::placeholder {
+      color: var(--sage);
+      opacity: 0.6;
+    }
+
+    .capture-input:focus {
+      border-color: var(--sage);
+    }
+
+    .capture-btn {
+      font-family: 'Geist', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 11px 20px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      -webkit-appearance: none;
+      border-radius: 0;
+      white-space: nowrap;
+    }
+
+    .capture-btn:hover { background: var(--sage); border-color: var(--sage); }
+    .capture-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .capture-note {
+      font-size: 11px;
+      color: var(--sage);
+      margin-top: 10px;
+      letter-spacing: 0.01em;
+      min-height: 16px;
+    }
+
+    .capture-note.success { color: var(--ink); }
+    .capture-note.error   { color: #a05050; }
+
     footer {
       padding: clamp(24px, 4vh, 40px) clamp(32px, 8vw, 120px);
       position: relative;
@@ -176,8 +247,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      animation: fadeUp 0.8s ease both;
-      animation-delay: 0.7s;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.6s;
     }
 
     .footer-copy {
@@ -186,19 +257,11 @@
       color: var(--sage);
     }
 
-    .footer-mark {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      opacity: 0.35;
-    }
-
-    /* The Reveal mark — two verticals + spanning horizontal */
     .reveal-mark {
       width: 18px;
       height: 12px;
       position: relative;
+      opacity: 0.28;
     }
 
     .reveal-mark::before,
@@ -216,37 +279,25 @@
 
     .reveal-mark-top {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 1px;
       background: var(--ink);
     }
 
-    /* ── Animations ── */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
+      50%       { opacity: 0.25; }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
+      .capture-row { flex-direction: column; }
+      .capture-input { border-right: 1px solid var(--sand); border-bottom: none; }
+      footer { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
   </style>
 </head>
@@ -261,26 +312,95 @@
       <span class="wordmark-text">lintil</span>
     </div>
 
-    <h1>Knowledge that <em>stays</em> with the practice.</h1>
+    <h1>Your practice knows a lot. <span>Don't forget it.</span></h1>
 
-    <p class="lede">
-      Every architecture practice loses knowledge — to leavers, to buried email threads, to questions nobody knew had already been answered. Lintil captures that knowledge at the moment it's needed and makes it permanently searchable by everyone in the firm.
+    <p class="sub">
+      The knowledge base built for architecture practices. Built by an architect who got tired of asking the same questions twice.
     </p>
 
     <div class="status">
       <span class="status-dot"></span>
       <span class="status-text">In development &mdash; UK launch 2026</span>
     </div>
+
+    <div class="capture">
+      <span class="capture-label">Be the first to know</span>
+      <div class="capture-row">
+        <input
+          type="email"
+          class="capture-input"
+          id="email-input"
+          placeholder="your@practice.com"
+          autocomplete="email"
+        >
+        <button class="capture-btn" id="submit-btn" onclick="handleSubmit()">
+          Notify me
+        </button>
+      </div>
+      <p class="capture-note" id="capture-note">No spam. One email when we launch.</p>
+    </div>
   </main>
 
   <footer>
     <span class="footer-copy">Built for architecture practices &nbsp;·&nbsp; lintil.app</span>
-    <div class="footer-mark" aria-hidden="true">
-      <div class="reveal-mark">
-        <div class="reveal-mark-top"></div>
-      </div>
+    <div class="reveal-mark" aria-hidden="true">
+      <div class="reveal-mark-top"></div>
     </div>
   </footer>
+
+  <script>
+    async function handleSubmit() {
+      const input  = document.getElementById('email-input');
+      const btn    = document.getElementById('submit-btn');
+      const note   = document.getElementById('capture-note');
+      const email  = input.value.trim();
+
+      if (!email || !email.includes('@')) {
+        note.textContent = 'Please enter a valid email address.';
+        note.className = 'capture-note error';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = '...';
+      note.textContent = '';
+      note.className = 'capture-note';
+
+      try {
+        const res = await fetch('https://api.buttondown.email/v1/subscribers', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Token dc129ae0-bc5c-426c-bd6b-7f566b050e90',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email_address: email })
+        });
+
+        if (res.status === 201 || res.ok) {
+          input.value = '';
+          note.textContent = "You're on the list. We'll be in touch.";
+          note.className = 'capture-note success';
+          btn.textContent = 'Done';
+        } else if (res.status === 400) {
+          note.textContent = 'That email is already on the list.';
+          note.className = 'capture-note';
+          btn.disabled = false;
+          btn.textContent = 'Notify me';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        note.textContent = 'Something went wrong. Email us at hello@lintil.app';
+        note.className = 'capture-note error';
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+      }
+    }
+
+    document.getElementById('email-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
 
 </body>
 </html>
